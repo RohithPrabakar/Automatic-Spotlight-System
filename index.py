@@ -1,3 +1,1 @@
-a = 10
-b = 20
-print(a+b)
+print("this is a pracitce to try use another branch and merge it to the main branch")
