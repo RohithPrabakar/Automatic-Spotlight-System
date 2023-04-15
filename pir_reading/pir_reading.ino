@@ -1,27 +1,36 @@
 int led = LED_BUILTIN;
-int sensor0 = A0;
-int sensor1 = A1;
-int sensor2 = A2;
-int sensor3 = A3;
-int sensor4 = A4;
-int sensor5 = A5;
+#define PIR_sensor1 2   // output (white) ground (black) power (red)
+#define PIR_sensor2 4   // output (white) ground (black) power (red)
+#define PIR_sensor3 7   // output (white) ground (black) power (red)
+#define PIR_sensor4 8   // output (yellow) ground (blue) power (green)
+#define PIR_sensor5 12  // output (yellow) ground (blue) power (green)
+#define PIR_sensor6 13
 
 void setup() {
-  pinMode(sensor0, INPUT);
-  pinMode(sensor1, INPUT);
-  pinMode(sensor2, INPUT);
-  pinMode(sensor3, INPUT);
-  pinMode(sensor4, INPUT);
-  pinMode(sensor5, INPUT);
+  pinMode(PIR_sensor1, INPUT);
+  pinMode(PIR_sensor2, INPUT);
+  pinMode(PIR_sensor3, INPUT);
+  pinMode(PIR_sensor4, INPUT);
+  pinMode(PIR_sensor5, INPUT);
+  pinMode(PIR_sensor6, INPUT);
   Serial.begin(9600);
 }
 void loop() {
-  int sensorval0 = analogRead(sensor0);
-  int sensorval1 = analogRead(sensor1);
-  int sensorval2 = analogRead(sensor2);
-  int sensorval3 = analogRead(sensor3);
-  int sensorval4 = analogRead(sensor4);
-  int sensorval5 = analogRead(sensor5);
+  int pirstate1 = digitalRead(PIR_sensor1);
+  int pirstate2 = digitalRead(PIR_sensor2);
+  int pirstate3 = digitalRead(PIR_sensor3);
+  int pirstate4 = digitalRead(PIR_sensor4);
+  int pirstate5 = digitalRead(PIR_sensor5);
+  int pirstate6 = digitalRead(PIR_sensor6);
+
+  int *pirarray[6] = {&pirstate1, &pirstate2, &pirstate3, &pirstate4, &pirstate5, &pirstate6};
+  int length = sizeof(pirarray)/sizeof(pirarray[0]);
+  Serial.print("Values in pirarray: ");
+  for (int i = 0; i < length; i++) {
+    Serial.print(*pirarray[i]);
+    Serial.print(" ");
+  }
+  Serial.println();
   /* for PIR sensor 1 input*/
 //   if (sensorval0 > 234) {
 //     Serial.print(1);
@@ -80,16 +89,5 @@ void loop() {
 //     Serial.println(0);
 //   }
 
-  Serial.print(sensorval0);
-  Serial.print(',');
-  Serial.print(sensorval1);
-  Serial.print(',');
-  Serial.print(sensorval2);
-  Serial.print(',');
-  Serial.print(sensorval3);
-  Serial.print(',');
-  Serial.print(sensorval4);
-  Serial.print(',');
-  Serial.println(sensorval5);
-  delay(10);
+ delay(1000);
 }

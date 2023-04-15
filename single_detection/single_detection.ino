@@ -106,6 +106,7 @@ void loop() {
   }
 
   // print all values in ledarray in one line
+  Serial.println("--------------------------");
   Serial.print("Values in pirarray: ");
   for (int i = 0; i < length; i++) {
     Serial.print(*pirarray[i]);
@@ -141,24 +142,23 @@ void loop() {
   }
 
   //servo position
-  if(xaxis == 0 && yaxis == 0){
-    servo1.write(90);
-    servo2.write(90);
-    servo3.write(90);
-    servo4.write(90);
-  }else{
+//  if(xaxis == 0 && yaxis == 0){
+    // servo1.write(90);
+    // servo2.write(90);
+    // servo3.write(90);
+    // servo4.write(90);
+//  }else{
     servo1.write(lr_mov(light1_pos, person_pos));
     servo2.write(ud_mov(light1_pos, person_pos, light_height));
     servo3.write(lr_mov(light1_pos, person_pos));
     servo4.write(ud_mov(light2_pos, person_pos, light_height));
-  }
+ // }
 
 
   Serial.println("Person position");
   Serial.print(person_pos[0]);
   Serial.print(" ");
   Serial.println(person_pos[1]);
-  Serial.println("--------------------------");
   Serial.println("servo 1 angles for light 1");
   Serial.println(lr_mov(light1_pos, person_pos));
   Serial.println("servo 2 angles for light 1");
