@@ -70,7 +70,7 @@ int main()
         }
     }
     
-    int xaxis = totalyaxis / j;
+    int xaxis = totalxaxis / j;
     int yaxis = totalyaxis / j;
     printf("%d, ",xaxis);
     printf("%d, ",yaxis);
